@@ -1,0 +1,42 @@
+openapi: 3.0.3
+info:
+  title: "Coin Converter"
+  version: "1.0"
+  description: API Specification that allows you to determine your crypto gains in USD.
+paths:
+  /calculate-profits:
+    get:
+      summary: Returns the crypto profits made
+      description: Determines the profits made given the buying price
+      parameters:
+        - name: symbol
+          in: query
+          description: crytocurrency symbol
+          required: true
+          schema:
+            type: string
+        - name: amount
+          in: query
+          description: amount in base currency
+          required: true
+          schema:
+            type: number
+        - name: buying-price
+          in: query
+          description: the original price the coin was bought as
+          required: true
+          schema:
+            type: number
+      responses:
+        "200":
+          description: OK
+          content:
+            application/json:
+              example:
+                success: true
+                query:
+                  symbol: BTC
+                  amount: 67
+                  buying-price: 5600
+                date: 2020-07-01
+                result: 1975200
